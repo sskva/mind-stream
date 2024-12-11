@@ -15,6 +15,8 @@ public class Controller {
 
     private final MindStreamService mindStreamService;
 
+
+
     @PostMapping("/add")
     public Response editPhrase(@RequestHeader final String accessToken) {
 
@@ -24,10 +26,37 @@ public class Controller {
         return response;
     }
 
+
+
+    @GetMapping("/get")
+    public Response get(@RequestHeader final String accessToken) {
+
+        log.info("START endpoint get");
+        Response response = mindStreamService.get();
+        log.info("END endpoint get, response: {}", response);
+        return response;
+    }
+
+
+
+    @PutMapping("/edit")
+    public Response edit(@RequestHeader final String accessToken) {
+
+        log.info("START endpoint put");
+        Response response = mindStreamService.edit();
+        log.info("END endpoint put, response: {}", response);
+        return response;
+    }
+
+
+
+    @DeleteMapping("/delete")
+    public Response delete(@RequestHeader final String accessToken) {
+
+        log.info("START endpoint delete");
+        Response response = mindStreamService.delete();
+        log.info("END endpoint delete, response: {}", response);
+        return response;
+    }
+
 }
-/*
-операции создания — создание ресурса через метод POST ;
-операции чтения — возврат представления ресурса через метод GET ;
-операции редактирования — перезапись ресурса через метод PUT или редактирование через PATCH ;
-операции удаления — удаление ресурса через метод DELETE .
- */

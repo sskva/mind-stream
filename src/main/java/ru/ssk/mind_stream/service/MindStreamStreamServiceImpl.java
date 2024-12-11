@@ -9,4 +9,25 @@ public class MindStreamStreamServiceImpl implements MindStreamService {
 
         return null;
     }
+
+
+
+    @Override
+    public Response get() {
+        return null;
+    }
+
+
+
+    @Override
+    public Response edit() {
+        return null;
+    }
+
+
+
+    @Override
+    public Response delete() {
+        return null;
+    }
 }
