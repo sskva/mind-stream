@@ -3,6 +3,7 @@ package ru.ssk.mind_stream.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.ssk.mind_stream.domain.api.AddReq;
 import ru.ssk.mind_stream.domain.response.Response;
 import ru.ssk.mind_stream.service.MindStreamService;
 
@@ -16,18 +17,16 @@ public class Controller {
 
 
 
-    @PostMapping("/add") //create // insert
-    public Response editPhrase(@RequestHeader final String appAccessToken) {
+    @PostMapping("/add") // create // insert
+    public void editPhrase(@RequestHeader final String appAccessToken, @RequestBody AddReq addReq) {
 
-        log.info("START endpoint add");
-        Response response = mindStreamService.add();
-        log.info("END endpoint add, response: {}", response);
-        return response;
+        log.info("START endpoint add, addReq", addReq);
+        mindStreamService.add(addReq);
     }
 
 
 
-    @GetMapping("/get")  //read // select
+    @GetMapping("/get")  // read // select
     public Response get(@RequestHeader final String appAccessToken) {
 
         log.info("START endpoint get");
@@ -38,7 +37,7 @@ public class Controller {
 
 
 
-    @PutMapping("/edit")  //update // update
+    @PutMapping("/edit")  // update // update
     public Response edit(@RequestHeader final String appAccessToken) {
 
         log.info("START endpoint put");
@@ -49,7 +48,7 @@ public class Controller {
 
 
 
-    @DeleteMapping("/delete")  //delete // delete
+    @DeleteMapping("/delete")  // delete // delete
     public Response delete(@RequestHeader final String accessToken) {
 
         log.info("START endpoint delete");
