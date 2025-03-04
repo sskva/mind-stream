@@ -20,7 +20,7 @@ public class Controller {
     @PostMapping("/add") // create // insert
     public void editPhrase(@RequestHeader final String appAccessToken, @RequestBody AddReq addReq) {
 
-        log.info("START endpoint add, addReq", addReq);
+        log.info("START endpoint add, addReq: {}", addReq);
         mindStreamService.add(addReq);
     }
 
