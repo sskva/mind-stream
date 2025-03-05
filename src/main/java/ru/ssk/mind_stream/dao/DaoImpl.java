@@ -1,4 +1,4 @@
-package ru.ssk.mind_stream.dao.impl;
+package ru.ssk.mind_stream.dao;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ssk.mind_stream.dao.Dao;
 import ru.ssk.mind_stream.domain.api.AddReq;
+import ru.ssk.mind_stream.domain.api.DeleteReq;
+import ru.ssk.mind_stream.domain.api.EditReq;
 import ru.ssk.mind_stream.domain.entity.MindStream;
 import ru.ssk.mind_stream.domain.entity.MindStreamRowMapper;
 import ru.ssk.mind_stream.domain.response.Response;
@@ -34,7 +36,6 @@ public class DaoImpl extends JdbcDaoSupport implements Dao {
 
     @Override
     public void add(AddReq addReq) {
-
         getJdbcTemplate().update("INSERT INTO mind_stream(text) VALUE (?);", addReq.getText());
     }
 
@@ -43,5 +44,19 @@ public class DaoImpl extends JdbcDaoSupport implements Dao {
     @Override
     public List<MindStream> get() {
         return getJdbcTemplate().query("SELECT * FROM mind_stream ORDER BY time_insert DESC;", new MindStreamRowMapper());
+    }
+
+
+
+    @Override
+    public void edit(EditReq editReq) {
+        getJdbcTemplate().update("UPDATE mind_stream SET text = ? WHERE id = ?;", editReq.getText(), editReq.getId());
+    }
+
+
+
+    @Override
+    public void delete(DeleteReq deleteReq) {
+        getJdbcTemplate().update("DELETE FROM mind_stream WHERE id = ?;", deleteReq.getId());
     }
 }

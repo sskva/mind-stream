@@ -1,6 +1,8 @@
 package ru.ssk.mind_stream.service;
 
 import ru.ssk.mind_stream.domain.api.AddReq;
+import ru.ssk.mind_stream.domain.api.DeleteReq;
+import ru.ssk.mind_stream.domain.api.EditReq;
 import ru.ssk.mind_stream.domain.response.Response;
 
 public interface MindStreamService {
@@ -9,7 +11,7 @@ public interface MindStreamService {
 
     Response get();
 
-    Response edit();
+    void edit(EditReq editReq);
 
-    Response delete();
+    void delete(DeleteReq deleteReq);
 }

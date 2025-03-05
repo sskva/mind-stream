@@ -1,4 +1,5 @@
-package ru.ssk.mind_stream.domain.response.error;
+package ru.ssk.mind_stream.domain.api;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseError implements Error{
+public class EditReq {
 
-    private int code;
-    private String message;
+    private long id;
+    private String text;
 }

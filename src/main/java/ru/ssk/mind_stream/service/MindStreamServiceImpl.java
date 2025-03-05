@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ssk.mind_stream.dao.Dao;
 import ru.ssk.mind_stream.domain.api.AddReq;
+import ru.ssk.mind_stream.domain.api.DeleteReq;
+import ru.ssk.mind_stream.domain.api.EditReq;
 import ru.ssk.mind_stream.domain.response.Response;
 import ru.ssk.mind_stream.domain.response.success.SuccessResponse;
 
@@ -14,6 +16,8 @@ import ru.ssk.mind_stream.domain.response.success.SuccessResponse;
 public class MindStreamServiceImpl implements MindStreamService {
 
     private final Dao dao;
+
+
 
     @Override
     public void add(AddReq addReq) {
@@ -32,14 +36,16 @@ public class MindStreamServiceImpl implements MindStreamService {
 
 
     @Override
-    public Response edit() {
-        return null;
+    public void edit(EditReq editReq) {
+
+        dao.edit(editReq);
     }
 
 
 
     @Override
-    public Response delete() {
-        return null;
+    public void delete(DeleteReq deleteReq) {
+
+        dao.delete(deleteReq);
     }
 }

@@ -2,8 +2,11 @@ package ru.ssk.mind_stream.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.sql.Delete;
 import org.springframework.web.bind.annotation.*;
 import ru.ssk.mind_stream.domain.api.AddReq;
+import ru.ssk.mind_stream.domain.api.DeleteReq;
+import ru.ssk.mind_stream.domain.api.EditReq;
 import ru.ssk.mind_stream.domain.response.Response;
 import ru.ssk.mind_stream.service.MindStreamService;
 
@@ -38,23 +41,20 @@ public class Controller {
 
 
     @PutMapping("/edit")  // update // update
-    public Response edit(@RequestHeader final String appAccessToken) {
+    public void edit(@RequestHeader final String appAccessToken, @RequestBody EditReq editReq) {
 
-        log.info("START endpoint put");
-        Response response = mindStreamService.edit();
-        log.info("END endpoint put, response: {}", response);
-        return response;
+        log.info("START endpoint edit, editReq: {}", editReq);
+        mindStreamService.edit(editReq);
     }
 
 
 
     @DeleteMapping("/delete")  // delete // delete
-    public Response delete(@RequestHeader final String accessToken) {
+    public void delete(@RequestHeader final String appAccessToken, @RequestBody DeleteReq deleteReq) {
 
         log.info("START endpoint delete");
-        Response response = mindStreamService.delete();
-        log.info("END endpoint delete, response: {}", response);
-        return response;
+        mindStreamService.delete(deleteReq);
+
     }
 
 }
