@@ -54,7 +54,5 @@ public class Controller {
 
         log.info("START endpoint delete");
         mindStreamService.delete(deleteReq);
-
     }
-
 }
